@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-public class Projeto implements Serializable {
+public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
