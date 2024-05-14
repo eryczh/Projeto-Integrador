@@ -6,15 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import services.ImovelService;
+
 @Configuration
 @Profile("teste")
 public class TesteConfiguracao {
     
     @Autowired
-    MyNameService myNameService;
+    ImovelService myImovelService;
 
+    @SuppressWarnings("unused")
     private boolean instanciar() throws ParseException {
-        this.myNameService.instanciarDB();
+        this.myImovelService.instanciarDB();
         return true;
     }
 }
