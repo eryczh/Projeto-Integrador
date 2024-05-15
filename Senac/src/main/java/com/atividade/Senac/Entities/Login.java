@@ -1,9 +1,7 @@
-package Entities;
+package com.atividade.Senac.Entities;
 
 import java.io.Serializable;
-
 import jakarta.persistence.*;
-;
 
 
 /*
@@ -12,6 +10,8 @@ import jakarta.persistence.*;
  *     User
  *     Senha
  */
+
+@Entity(name = "Login")
 public class Login implements Serializable{
     
     private static final long serialVersionUID = 1L;

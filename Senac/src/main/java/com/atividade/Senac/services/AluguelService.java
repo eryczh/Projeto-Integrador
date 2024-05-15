@@ -1,4 +1,4 @@
-package services;
+package com.atividade.Senac.services;
 
 import java.util.Arrays;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import Entities.Aluguel;
-import Repository.AluguelRepository;
+import com.atividade.Senac.Entities.Aluguel;
+import com.atividade.Senac.Repository.AluguelRepository;
 
 @Service
 public class AluguelService {

@@ -1,7 +1,6 @@
-package Entities;
+package com.atividade.Senac.Entities;
 
 import java.io.Serializable;
-
 import jakarta.persistence.*;
 
 /* 
@@ -14,13 +13,13 @@ import jakarta.persistence.*;
  *  ***************** *
  */
 
- @Entity
+ @Entity(name = "Alugueis")
 public class Aluguel implements Serializable {
     
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "Id")
+    @Column (name = "ID")
     int id;
 
     @Column (name = "Nome_Cliente")
@@ -33,7 +32,6 @@ public class Aluguel implements Serializable {
     String formaDePagamento;
 
     public Aluguel () {
-
     }
 
     public int getId() {
