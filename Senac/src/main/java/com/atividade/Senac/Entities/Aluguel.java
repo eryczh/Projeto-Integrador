@@ -19,8 +19,10 @@ public class Aluguel implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "ID")
+    @Column (name = "ID_Aluguel")
     int id;
+
+    
 
     @Column (name = "Nome_Cliente")
     String nomeCliente;

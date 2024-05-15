@@ -1,6 +1,8 @@
 package com.atividade.Senac.configurations;
 
 import com.atividade.Senac.services.AluguelService;
+import com.atividade.Senac.services.ImovelService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -13,9 +15,15 @@ public class TesteConfiguracao {
     
     @Autowired
     AluguelService myAluguelService;
+    
+    @Autowired
+    ImovelService myImovelService;
 
     private boolean instanciar() throws ParseException {
-        this.myAluguelService.instanciarDB();
+        this.myAluguelService.instanciarDBAluguel();
+        this.myImovelService.instanciarDBImovel();
+
+        
         return true;
     }
 }

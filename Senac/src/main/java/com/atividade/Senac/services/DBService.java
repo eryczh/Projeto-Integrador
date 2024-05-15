@@ -1,7 +1,5 @@
 package com.atividade.Senac.services;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +20,6 @@ public class DBService {
         Optional<Aluguel> aluguel = aluguelRepository.findById(id);
         return aluguel.orElse(null);
     }
-
-
 
     public List<Aluguel> listarTodosAlugueis() {
         List<Aluguel> aluguel = aluguelRepository.findAll();
