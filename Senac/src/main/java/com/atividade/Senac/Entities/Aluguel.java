@@ -22,8 +22,6 @@ public class Aluguel implements Serializable {
     @Column (name = "ID_Aluguel")
     int id;
 
-    
-
     @Column (name = "Nome_Cliente")
     String nomeCliente;
 
@@ -33,7 +31,21 @@ public class Aluguel implements Serializable {
     @Column (name = "Forma_De_Pagamento")
     String formaDePagamento;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_Imovel") 
+    private Imovel imovel;
+
+    
+
     public Aluguel () {
+    }
+
+    public Imovel getImovel () {
+        return imovel;
+    }
+
+    public void setImovel (Imovel imovel) {
+        this.imovel = imovel;
     }
 
     public int getId() {
