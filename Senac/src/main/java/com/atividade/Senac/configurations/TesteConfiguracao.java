@@ -1,23 +1,21 @@
-package configurations;
+package com.atividade.Senac.configurations;
 
-import java.text.ParseException;
-
+import com.atividade.Senac.services.AluguelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import services.ImovelService;
+import java.text.ParseException;
 
 @Configuration
 @Profile("teste")
 public class TesteConfiguracao {
     
     @Autowired
-    ImovelService myImovelService;
+    AluguelService myAluguelService;
 
-    @SuppressWarnings("unused")
     private boolean instanciar() throws ParseException {
-        this.myImovelService.instanciarDB();
+        this.myAluguelService.instanciarDB();
         return true;
     }
 }

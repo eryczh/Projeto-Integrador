@@ -1,25 +1,14 @@
-package resource;
+package com.atividade.Senac.resource;
+
+import com.atividade.Senac.Entities.Aluguel;
+import com.atividade.Senac.services.DBService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import Entities.Aluguel;
-import services.DBService;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-
-
 
 @RestController
 @RequestMapping(value = "/aluguel")
@@ -40,12 +29,6 @@ public class AluguelResource {
         return alugueis;
     }
 
-    @GetMapping(value = "nome/{nome}")
-    public ResponseEntity<Aluguel> findByNomeAluguel (@PathVariable String nome) {
-        Aluguel aluguel = dbService.findByNomeAluguel(nome);
-        return ResponseEntity.ok().body(aluguel);
-    } 
-
     @PostMapping
     public ResponseEntity<Aluguel> gravarAluguel(@RequestBody Aluguel aluguel) {
         aluguel = dbService.gravarAluguel(aluguel);
@@ -65,6 +48,4 @@ public class AluguelResource {
         Aluguel alterado = dbService.updateAluguel(id, aluguel);
         return ResponseEntity.ok().body(alterado);
     }
-     
-
 }
