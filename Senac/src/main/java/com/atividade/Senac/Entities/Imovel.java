@@ -1,6 +1,5 @@
 package com.atividade.Senac.Entities;
 
-
 import jakarta.persistence.*;
 import java.io.Serializable;
 

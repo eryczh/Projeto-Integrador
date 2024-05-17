@@ -4,6 +4,8 @@ import com.atividade.Senac.services.AluguelService;
 import com.atividade.Senac.services.ImovelService;
 import com.atividade.Senac.services.LoginService;
 
+import jakarta.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -23,7 +25,9 @@ public class TesteConfiguracao {
     @Autowired
     LoginService myLoginService;
 
+    @PostConstruct
     private boolean instanciar() throws ParseException {
+       
         this.myAluguelService.instanciarDBAluguel();
         this.myImovelService.instanciarDBImovel();
         this.myLoginService.instanciarDBLogin();

@@ -1,23 +1,15 @@
 package com.atividade.Senac.Entities;
 
-import java.io.Serializable;
 import jakarta.persistence.*;
-
-
-/*
- * 
- *     Login
- *     User
- *     Senha
- */
+import java.io.Serializable;
 
 @Entity(name = "Login")
-public class Login implements Serializable{
+public class Login implements Serializable {
     
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "id_user")
+    @Column (name = "ID_User")
     int id;
     
     @Column (name = "User")
@@ -27,7 +19,14 @@ public class Login implements Serializable{
     String senha;
 
     public Login () {
+    }
 
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUser() {
@@ -54,8 +53,9 @@ public class Login implements Serializable{
     @Override
     public String toString() {
         return "Login {" +
-                "user = " + user +
-                "senha = " + senha +
-                " }";
+                "id = " + id +
+                ", user = " + user +
+                ", senha = " + senha +
+                "}";
     }
 }

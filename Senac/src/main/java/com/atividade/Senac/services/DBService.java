@@ -1,18 +1,16 @@
 package com.atividade.Senac.services;
 
+import com.atividade.Senac.Entities.Aluguel;
+import com.atividade.Senac.Repository.AluguelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.atividade.Senac.Entities.Aluguel;
-import com.atividade.Senac.Repository.AluguelRepository;
-
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DBService {
     
-
     @Autowired
     private AluguelRepository aluguelRepository;
 
@@ -26,17 +24,13 @@ public class DBService {
         return aluguel;
     }
 
-
     public Aluguel gravarAluguel(Aluguel aluguel) {
         return aluguelRepository.save(aluguel);
     }
 
-
     public void deletarAluguel(Integer id) {
         aluguelRepository.deleteById(id);
     }
-
-
 
     public Aluguel updateAluguel (Integer id, Aluguel aluguel) {
         Aluguel alterado = findByIdAluguel(id);
@@ -49,7 +43,4 @@ public class DBService {
         }
         return null;
     }
-
-    
-
 }

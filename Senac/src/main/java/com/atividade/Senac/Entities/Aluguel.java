@@ -3,16 +3,6 @@ package com.atividade.Senac.Entities;
 import java.io.Serializable;
 import jakarta.persistence.*;
 
-/* 
- * Aluguel
- * ****************** *
- * Nome do Cliente    *
- * CPF                *
- * Forma de Pagamento *
- * ID imovel alugado  *
- *  ***************** *
- */
-
  @Entity(name = "Alugueis")
 public class Aluguel implements Serializable {
     
@@ -34,9 +24,7 @@ public class Aluguel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ID_Imovel") 
     private Imovel imovel;
-
     
-
     public Aluguel () {
     }
 

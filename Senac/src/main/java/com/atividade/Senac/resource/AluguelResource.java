@@ -15,23 +15,23 @@ import java.util.List;
 public class AluguelResource {
     
     @Autowired
-    private DBService dbService;
+    private DBService dbServiceAluguel;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Aluguel> findById(@PathVariable Integer id) {
-        Aluguel aluguel = dbService.findByIdAluguel(id);
+        Aluguel aluguel = dbServiceAluguel.findByIdAluguel(id);
         return ResponseEntity.ok().body(aluguel);
     }
 
     @GetMapping
     public List<Aluguel> listarTodosAlugueis() {
-        List<Aluguel> alugueis = dbService.listarTodosAlugueis();
+        List<Aluguel> alugueis = dbServiceAluguel.listarTodosAlugueis();
         return alugueis;
     }
 
     @PostMapping
     public ResponseEntity<Aluguel> gravarAluguel(@RequestBody Aluguel aluguel) {
-        aluguel = dbService.gravarAluguel(aluguel);
+        aluguel = dbServiceAluguel.gravarAluguel(aluguel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(aluguel.getId()).toUri();
         
         return ResponseEntity.created(uri).body(aluguel);
@@ -39,13 +39,13 @@ public class AluguelResource {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {
-        dbService.deletarAluguel(id);
+        dbServiceAluguel.deletarAluguel(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Aluguel> update(@PathVariable Integer id, @RequestBody Aluguel aluguel) {
-        Aluguel alterado = dbService.updateAluguel(id, aluguel);
+        Aluguel alterado = dbServiceAluguel.updateAluguel(id, aluguel);
         return ResponseEntity.ok().body(alterado);
     }
 }

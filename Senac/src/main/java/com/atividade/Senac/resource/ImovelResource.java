@@ -1,49 +1,37 @@
 package com.atividade.Senac.resource;
 
-
-import java.net.URI;
-import java.util.List;
-
+import com.atividade.Senac.Entities.Imovel;
 import com.atividade.Senac.services.DBServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.atividade.Senac.Entities.Imovel;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-
-
+import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/imovel")
 public class ImovelResource {
 
     @Autowired
-    private DBServiceI dbService;
+    private DBServiceI dbServiceImovel;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Imovel> findById(@PathVariable Integer id) {
-        Imovel imovel = dbService.findByIdImovel(id);
+        Imovel imovel = dbServiceImovel.findByIdImovel(id);
         return ResponseEntity.ok().body(imovel);
     }
 
     @GetMapping
     public List<Imovel> listarTodosImoveis() {
-        List<Imovel> imoveis = dbService.listarTodosImoveis();
+        List<Imovel> imoveis = dbServiceImovel.listarTodosImoveis();
         return imoveis;
     }
 
     @PostMapping
     public ResponseEntity<Imovel> gravarImovel(@RequestBody Imovel imovel) {
-        imovel = dbService.gravarImovel(imovel);
+        imovel = dbServiceImovel.gravarImovel(imovel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(imovel.getId()).toUri();
 
         return ResponseEntity.created(uri).body(imovel);
@@ -51,13 +39,13 @@ public class ImovelResource {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {
-        dbService.deletarImovel(id);
+        dbServiceImovel.deletarImovel(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Imovel> update(@PathVariable Integer id, @RequestBody Imovel imovel) {
-        Imovel alterado = dbService.updateImovel(id, imovel);
+        Imovel alterado = dbServiceImovel.updateImovel(id, imovel);
         return ResponseEntity.ok().body(alterado);
     }
 }

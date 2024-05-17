@@ -1,12 +1,12 @@
 package com.atividade.Senac.services;
 
-import java.util.Optional;
-
+import com.atividade.Senac.Entities.Login;
+import com.atividade.Senac.Repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.atividade.Senac.Entities.Login;
-import com.atividade.Senac.Repository.LoginRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DBServiceLogin {
@@ -19,7 +19,12 @@ public class DBServiceLogin {
         return login.orElse(null);
     }
 
-    public Login aicionarLogin(Login login) {
+    public List<Login> ListarTodosLogins() {
+        List<Login> login = loginRepository.findAll();
+        return login;
+    }
+
+    public Login gravarLogin(Login login) {
         return loginRepository.save(login);
     } 
 
@@ -38,5 +43,4 @@ public class DBServiceLogin {
 
         return null;
     }
-    
 }
