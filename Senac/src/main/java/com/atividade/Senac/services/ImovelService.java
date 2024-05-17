@@ -17,7 +17,7 @@ public class ImovelService {
     private ImovelRepository imovelRepository;
     @Bean
     public void instanciarDBImovel() {
-        Imovel imovel1 = new Imovel("Imovel belo", "SP", "Rua euzebio", "0000-11", 11, "CASA", 3.000, false);
+        Imovel imovel1 = new Imovel("Eric P2", "Piaui", "Rua Dom Pedro", "0000-11", 11, "Fazenda", 33.000, false);
         imovelRepository.saveAll(Arrays.asList(imovel1));
     }
 }
