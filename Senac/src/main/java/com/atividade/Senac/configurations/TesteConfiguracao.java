@@ -23,15 +23,16 @@ public class TesteConfiguracao {
     ImovelService myImovelService;
 
     @Autowired
-    LoginService myLoginService;
+    LoginService loginService;
+
+
 
     @PostConstruct
     private boolean instanciar() throws ParseException {
        
         this.myAluguelService.instanciarDBAluguel();
         this.myImovelService.instanciarDBImovel();
-        this.myLoginService.instanciarDBLogin();
-        
+        this.loginService.instanciarDBLogin();
         return true;
     }
 }
