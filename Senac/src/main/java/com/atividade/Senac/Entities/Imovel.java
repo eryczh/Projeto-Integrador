@@ -34,7 +34,7 @@ public class Imovel implements Serializable {
     Double valor;
 
     @Column (name = "Alugada")
-    boolean alugada;
+    private boolean alugada;
 
     public Imovel () {
     }
