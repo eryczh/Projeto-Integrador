@@ -15,8 +15,8 @@ public class Imovel implements Serializable {
     @Column (name = "Nome")
     String nome;
 
-    @Column (name = "Cidade")
-    String cidade;
+    @Column (name = "Estado")
+    String estado;
 
     @Column (name = "Endereço")
     String endereco;
@@ -55,16 +55,16 @@ public class Imovel implements Serializable {
         this.nome = nome;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getEndereco() {
-        return cidade;
+        return endereco;
     }
 
     public void setEndereco(String endereco) {
@@ -103,7 +103,7 @@ public class Imovel implements Serializable {
         this.valor = valor;
     }
 
-    public Boolean getAlugada() {
+    public boolean isAlugada() {
         return alugada;
     }
 
@@ -111,9 +111,9 @@ public class Imovel implements Serializable {
        this.alugada = alugada;
     }
 
-    public Imovel(String nome, String cidade, String endereco, String cep, int numero, String tipo, double valor, boolean alugada) {
+    public Imovel(String nome, String estado, String endereco, String cep, int numero, String tipo, double valor, boolean alugada) {
         this.nome = nome;
-        this.cidade = cidade;
+        this.estado = estado;
         this.endereco = endereco;
         this.cep = cep;
         this.numero = numero;
@@ -127,7 +127,7 @@ public class Imovel implements Serializable {
         return "Imovel {" +
                 "id = " + id +
                 ", nome = " + nome +
-                ", cidade = " + cidade +
+                ", cidade = " + estado +
                 ", endereco = " + endereco +
                 ", cep = " + cep +
                 ", numero = " + numero +

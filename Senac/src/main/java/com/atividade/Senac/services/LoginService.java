@@ -16,7 +16,7 @@ public class LoginService {
     private LoginRepository loginRepository;
     @Bean
     public void instanciarDBLogin() {
-        Login login = new Login("caio", "teles");
+        Login login = new Login("teste", "teste");
         loginRepository.saveAll(Arrays.asList(login));
     }
 }

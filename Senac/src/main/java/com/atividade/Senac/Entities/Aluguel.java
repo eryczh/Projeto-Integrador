@@ -22,7 +22,7 @@ public class Aluguel implements Serializable {
     String formaDePagamento;
 
     @ManyToOne
-    @JoinColumn(name = "ID_Imovel") 
+    @JoinColumn(name = "Imovel") 
     private Imovel imovel;
     
     public Aluguel () {
@@ -72,6 +72,13 @@ public class Aluguel implements Serializable {
         this.nomeCliente = nomeCliente;
         this.cpf = cpf;
         this.formaDePagamento = formaDePagamento;
+    }
+
+    public Aluguel(String nomeCliente, String cpf, String formaDePagamento, Imovel imovel) {
+        this.nomeCliente = nomeCliente;
+        this.cpf = cpf;
+        this.formaDePagamento = formaDePagamento;
+        this.imovel = imovel;
     }
 
     @Override

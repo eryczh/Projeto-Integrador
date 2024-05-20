@@ -36,17 +36,37 @@ public class DBServiceI {
         Imovel alterado = findByIdImovel(id);
         if (alterado != null) {
             alterado.setNome(imovel.getNome());
-            alterado.setCidade(imovel.getCidade());
+            alterado.setEstado(imovel.getEstado());
             alterado.setEndereco(imovel.getEndereco());
             alterado.setCEP(imovel.getCEP());
             alterado.setNumero(imovel.getNumero());
             alterado.setTipo(imovel.getTipo());
             alterado.setValor(imovel.getValor());
-            alterado.setAlugada(imovel.getAlugada());
+            alterado.setAlugada(imovel.isAlugada());
 
             return imovelRepository.save(alterado);
         }
 
         return null;
+    }
+
+    public List<Imovel> listarImoveisPorTipo(String tipo) {
+        return imovelRepository.listarImoveisPorTipo(tipo);
+    }
+
+    public List<Imovel> listarImoveisPorCep(String cep) {
+        return imovelRepository.listarImoveisPorCep(cep);
+    }
+
+    public List<Imovel> listarImoveisPorTipoECep(String tipo, String cep) {
+        return imovelRepository.listarImoveisPorTipoECep(tipo, cep);
+    }
+
+    public List<Imovel> listarImoveisAlugados() {
+        return imovelRepository.findByAlugadaTrue();
+    }
+
+    public List<Imovel> listarImoveisDiisponiveis() {
+        return imovelRepository.findByAlugadaFalse();
     }
 }

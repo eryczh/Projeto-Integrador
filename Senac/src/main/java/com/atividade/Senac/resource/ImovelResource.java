@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 33600)
 @RestController
 @RequestMapping(value = "/imovel")
 public class ImovelResource {
@@ -33,7 +34,6 @@ public class ImovelResource {
     public ResponseEntity<Imovel> gravarImovel(@RequestBody Imovel imovel) {
         imovel = dbServiceImovel.gravarImovel(imovel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(imovel.getId()).toUri();
-
         return ResponseEntity.created(uri).body(imovel);
     }
 
@@ -47,5 +47,38 @@ public class ImovelResource {
     public ResponseEntity<Imovel> update(@PathVariable Integer id, @RequestBody Imovel imovel) {
         Imovel alterado = dbServiceImovel.updateImovel(id, imovel);
         return ResponseEntity.ok().body(alterado);
+    }
+
+    // Novo endpoint: buscar imóveis por tipo
+    @GetMapping(value = "/tipo/{tipo}")
+    public ResponseEntity<List<Imovel>> listarImoveisPorTipo(@PathVariable String tipo) {
+        List<Imovel> imoveis = dbServiceImovel.listarImoveisPorTipo(tipo);
+        return ResponseEntity.ok().body(imoveis);
+    }
+
+    // Novo endpoint: buscar imóveis por CEP
+    @GetMapping(value = "/cep/{cep}")
+    public ResponseEntity<List<Imovel>> listarImoveisPorCep(@PathVariable String cep) {
+        List<Imovel> imoveis = dbServiceImovel.listarImoveisPorCep(cep);
+        return ResponseEntity.ok().body(imoveis);
+    }
+
+    // Novo endpoint: buscar imóveis por tipo e CEP
+    @GetMapping(value = "/tipo/{tipo}/cep/{cep}")
+    public ResponseEntity<List<Imovel>> listarImoveisPorTipoECep(@PathVariable String tipo, @PathVariable String cep) {
+        List<Imovel> imoveis = dbServiceImovel.listarImoveisPorTipoECep(tipo, cep);
+        return ResponseEntity.ok().body(imoveis);
+    }
+
+    @GetMapping(value = "/alugado")
+    public ResponseEntity<List<Imovel>> listarImoveisAlugados() {
+        List<Imovel> imoveis = dbServiceImovel.listarImoveisAlugados();
+        return ResponseEntity.ok().body(imoveis);
+    }
+
+    @GetMapping(value = "/disponivel")
+    public ResponseEntity<List<Imovel>> listarImoveisDisponiveis() {
+        List<Imovel> imoveis = dbServiceImovel.listarImoveisDiisponiveis();
+        return ResponseEntity.ok().body(imoveis);
     }
 }
