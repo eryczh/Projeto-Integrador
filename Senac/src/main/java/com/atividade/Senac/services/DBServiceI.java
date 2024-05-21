@@ -50,6 +50,24 @@ public class DBServiceI {
         return null;
     }
 
+    public Imovel alugarImovel (Integer id, Imovel imovelEnviado) {
+        Imovel imovel;
+        imovel = findByIdImovel(id);
+
+        imovel.setAlugada(true);
+
+        return imovelRepository.save(imovel);
+    }
+
+    public Imovel disponibilizarImovel (Integer id, Imovel imovelEnviado) {
+        Imovel imovel;
+        imovel = findByIdImovel(id);
+
+        imovel.setAlugada(false);
+
+        return imovelRepository.save(imovel);
+    }
+
     public List<Imovel> listarImoveisPorTipo(String tipo) {
         return imovelRepository.listarImoveisPorTipo(tipo);
     }

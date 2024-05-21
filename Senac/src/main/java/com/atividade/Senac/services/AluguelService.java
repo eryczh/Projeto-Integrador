@@ -22,7 +22,7 @@ public class AluguelService {
 
     @Bean
     public void instanciarDBAluguel() {
-        Imovel imovel1 = new Imovel("Eric P2", "Piaui", "Rua Corinto Andrade, Pedro II", "64255-000", 11, "Casa", 50.99, false);
+        Imovel imovel1 = new Imovel("Eric P2", "Piaui", "Rua Corinto Andrade, Pedro II", "64255-000", 11, "Casa", 50.99, true);
         imovelRepository.saveAll(Arrays.asList(imovel1));
 
         imovel1 = imovelRepository.getById(1);

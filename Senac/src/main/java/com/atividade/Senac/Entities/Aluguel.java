@@ -53,7 +53,7 @@ public class Aluguel implements Serializable {
     }
 
     public String getCpf() {
-        return nomeCliente;
+        return cpf;
     }
 
     public void setCpf(String cpf) {
@@ -65,12 +65,6 @@ public class Aluguel implements Serializable {
     }
 
     public void setFormaDePagamento(String formaDePagamento) {
-        this.formaDePagamento = formaDePagamento;
-    }
-
-    public Aluguel(String nomeCliente, String cpf, String formaDePagamento) {
-        this.nomeCliente = nomeCliente;
-        this.cpf = cpf;
         this.formaDePagamento = formaDePagamento;
     }
 

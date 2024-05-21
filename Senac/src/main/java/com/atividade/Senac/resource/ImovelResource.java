@@ -49,6 +49,18 @@ public class ImovelResource {
         return ResponseEntity.ok().body(alterado);
     }
 
+    @PutMapping(value = "/disponibilizar/{id}")
+    public ResponseEntity<Imovel> disponibilizar(@PathVariable Integer id, @RequestBody Imovel imovel) {
+        dbServiceImovel.disponibilizarImovel(id, imovel);
+        return ResponseEntity.status(200).build();
+    }
+
+    @PutMapping(value = "/alugar/{id}")
+    public ResponseEntity<Imovel> alugar(@PathVariable Integer id, @RequestBody Imovel imovel) {
+        dbServiceImovel.alugarImovel(id, imovel);
+        return ResponseEntity.status(200).build();
+    }
+
     // Novo endpoint: buscar imóveis por tipo
     @GetMapping(value = "/tipo/{tipo}")
     public ResponseEntity<List<Imovel>> listarImoveisPorTipo(@PathVariable String tipo) {
