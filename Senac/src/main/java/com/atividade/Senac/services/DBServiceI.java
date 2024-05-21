@@ -1,7 +1,9 @@
 package com.atividade.Senac.services;
 
 import com.atividade.Senac.Entities.Imovel;
+import com.atividade.Senac.Entities.Aluguel;
 import com.atividade.Senac.Repository.ImovelRepository;
+import com.atividade.Senac.Repository.AluguelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +16,16 @@ public class DBServiceI {
     @Autowired
     private ImovelRepository imovelRepository;
 
-    public Imovel findByIdImovel (Integer id) {
+    @Autowired
+    private AluguelRepository aluguelRepository;
+
+    public Imovel findByIdImovel(Integer id) {
         Optional<Imovel> imovel = imovelRepository.findById(id);
         return imovel.orElse(null);
     }
 
     public List<Imovel> listarTodosImoveis() {
-        List<Imovel> imovel = imovelRepository.findAll();
-        return imovel;
+        return imovelRepository.findAll();
     }
 
     public Imovel gravarImovel(Imovel imovel) {
@@ -29,10 +33,19 @@ public class DBServiceI {
     }
 
     public void deletarImovel(Integer id) {
-        imovelRepository.deleteById(id);
+        Optional<Imovel> imovel = imovelRepository.findById(id);
+        if (imovel.isPresent()) {
+            if (imovel.get().isAlugada()) {
+                Optional<Aluguel> aluguel = aluguelRepository.findByImovel(imovel.get());
+                aluguel.ifPresent(aluguelRepository::delete);
+            }
+            imovelRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Imóvel não encontrado");
+        }
     }
 
-    public Imovel updateImovel (Integer id, Imovel imovel) {
+    public Imovel updateImovel(Integer id, Imovel imovel) {
         Imovel alterado = findByIdImovel(id);
         if (alterado != null) {
             alterado.setNome(imovel.getNome());
@@ -50,18 +63,16 @@ public class DBServiceI {
         return null;
     }
 
-    public Imovel alugarImovel (Integer id, Imovel imovelEnviado) {
-        Imovel imovel;
-        imovel = findByIdImovel(id);
+    public Imovel alugarImovel(Integer id, Imovel imovelEnviado) {
+        Imovel imovel = findByIdImovel(id);
 
         imovel.setAlugada(true);
 
         return imovelRepository.save(imovel);
     }
 
-    public Imovel disponibilizarImovel (Integer id, Imovel imovelEnviado) {
-        Imovel imovel;
-        imovel = findByIdImovel(id);
+    public Imovel disponibilizarImovel(Integer id, Imovel imovelEnviado) {
+        Imovel imovel = findByIdImovel(id);
 
         imovel.setAlugada(false);
 
@@ -84,7 +95,7 @@ public class DBServiceI {
         return imovelRepository.findByAlugadaTrue();
     }
 
-    public List<Imovel> listarImoveisDiisponiveis() {
+    public List<Imovel> listarImoveisDisponiveis() {
         return imovelRepository.findByAlugadaFalse();
     }
 }

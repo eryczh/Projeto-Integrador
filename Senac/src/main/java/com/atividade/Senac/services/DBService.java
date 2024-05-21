@@ -1,7 +1,10 @@
 package com.atividade.Senac.services;
 
 import com.atividade.Senac.Entities.Aluguel;
+import com.atividade.Senac.Entities.Imovel;
 import com.atividade.Senac.Repository.AluguelRepository;
+import com.atividade.Senac.Repository.ImovelRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,21 +17,30 @@ public class DBService {
     @Autowired
     private AluguelRepository aluguelRepository;
 
+    @Autowired
+    private DBServiceI imovelServiceI;
+
     public Aluguel findByIdAluguel (Integer id) {
         Optional<Aluguel> aluguel = aluguelRepository.findById(id);
         return aluguel.orElse(null);
     }
 
+    
     public List<Aluguel> listarTodosAlugueis() {
         List<Aluguel> aluguel = aluguelRepository.findAll();
         return aluguel;
     }
 
     public Aluguel gravarAluguel(Aluguel aluguel) {
+        Imovel imovel = (aluguel.getImovel());
+        imovelServiceI.alugarImovel(imovel.getId(), imovel);
         return aluguelRepository.save(aluguel);
     }
 
     public void deletarAluguel(Integer id) {
+        Aluguel aluguel = findByIdAluguel(id);
+        Imovel imovel = (aluguel.getImovel());
+        imovelServiceI.disponibilizarImovel(imovel.getId(), imovel);
         aluguelRepository.deleteById(id);
     }
 

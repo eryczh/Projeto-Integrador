@@ -25,6 +25,9 @@ public interface ImovelRepository extends JpaRepository<Imovel, Integer> {
     @Query("SELECT imoveis FROM Imoveis imoveis WHERE imoveis.tipo = :tipo AND imoveis.cep = :cep")
     List<Imovel> listarImoveisPorTipoECep(String tipo, String cep);
 
+    @Query("SELECT imoveis FROM Imoveis imoveis WHERE imoveis.endereco = :endereco AND imoveis.numero = :numero")
+    List<Imovel> findByEnderecoAndNumero(String endereco, String numero);
+
     @Query("SELECT imoveis FROM Imoveis imoveis WHERE imoveis.alugada = false")
     List<Imovel> findByAlugadaFalse();
 

@@ -26,8 +26,7 @@ public class ImovelResource {
 
     @GetMapping
     public List<Imovel> listarTodosImoveis() {
-        List<Imovel> imoveis = dbServiceImovel.listarTodosImoveis();
-        return imoveis;
+        return dbServiceImovel.listarTodosImoveis();
     }
 
     @PostMapping
@@ -39,8 +38,12 @@ public class ImovelResource {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {
-        dbServiceImovel.deletarImovel(id);
-        return ResponseEntity.noContent().build();
+        try {
+            dbServiceImovel.deletarImovel(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(400).build();
+        }
     }
 
     @PutMapping(value = "/{id}")
@@ -61,21 +64,18 @@ public class ImovelResource {
         return ResponseEntity.status(200).build();
     }
 
-    // Novo endpoint: buscar imóveis por tipo
     @GetMapping(value = "/tipo/{tipo}")
     public ResponseEntity<List<Imovel>> listarImoveisPorTipo(@PathVariable String tipo) {
         List<Imovel> imoveis = dbServiceImovel.listarImoveisPorTipo(tipo);
         return ResponseEntity.ok().body(imoveis);
     }
 
-    // Novo endpoint: buscar imóveis por CEP
     @GetMapping(value = "/cep/{cep}")
     public ResponseEntity<List<Imovel>> listarImoveisPorCep(@PathVariable String cep) {
         List<Imovel> imoveis = dbServiceImovel.listarImoveisPorCep(cep);
         return ResponseEntity.ok().body(imoveis);
     }
 
-    // Novo endpoint: buscar imóveis por tipo e CEP
     @GetMapping(value = "/tipo/{tipo}/cep/{cep}")
     public ResponseEntity<List<Imovel>> listarImoveisPorTipoECep(@PathVariable String tipo, @PathVariable String cep) {
         List<Imovel> imoveis = dbServiceImovel.listarImoveisPorTipoECep(tipo, cep);
@@ -90,7 +90,7 @@ public class ImovelResource {
 
     @GetMapping(value = "/disponivel")
     public ResponseEntity<List<Imovel>> listarImoveisDisponiveis() {
-        List<Imovel> imoveis = dbServiceImovel.listarImoveisDiisponiveis();
+        List<Imovel> imoveis = dbServiceImovel.listarImoveisDisponiveis();
         return ResponseEntity.ok().body(imoveis);
     }
 }

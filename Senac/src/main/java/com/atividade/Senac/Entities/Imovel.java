@@ -25,7 +25,7 @@ public class Imovel implements Serializable {
     String cep;
 
     @Column (name = "Número")
-    int numero;
+    String numero;
 
     @Column (name = "Tipo")
     String tipo;
@@ -79,11 +79,11 @@ public class Imovel implements Serializable {
         this.cep = cep;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -111,7 +111,7 @@ public class Imovel implements Serializable {
        this.alugada = alugada;
     }
 
-    public Imovel(String nome, String estado, String endereco, String cep, int numero, String tipo, double valor, boolean alugada) {
+    public Imovel(String nome, String estado, String endereco, String cep, String numero, String tipo, double valor, boolean alugada) {
         this.nome = nome;
         this.estado = estado;
         this.endereco = endereco;

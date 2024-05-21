@@ -46,7 +46,11 @@ public class DBSeviceLogin {
 
         return null;
     }
-
+    
+    public Login validarLogin(String user, String senha) {
+        return loginRepository.findByUserAndSenha(user, senha);
+    }
+    
     public Login buscarLogin(String user, String senha) {
         return loginRepository.findByUserAndSenha(user, senha);
     }
