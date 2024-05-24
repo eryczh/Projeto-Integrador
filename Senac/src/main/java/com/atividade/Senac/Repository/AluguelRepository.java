@@ -21,7 +21,7 @@ public interface AluguelRepository extends JpaRepository <Aluguel, Integer>{
     + "WHERE alugueis.id!= null ORDER BY alugueis.nomeCliente")
     List<Aluguel> listarAlugueisSemId();
 
-    @Query("SELECT alugueis FROM Alugueis alugueis WHERE aluguies.cpf = :cpf")
+    @Query("SELECT alugueis FROM Alugueis alugueis WHERE alugueis.cpf = :cpf")
     List<Aluguel> findByCpf(String cpf);
 
     Optional<Aluguel> findByImovel(Imovel imovel);

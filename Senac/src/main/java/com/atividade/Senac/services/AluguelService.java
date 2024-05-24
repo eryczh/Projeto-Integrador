@@ -27,7 +27,7 @@ public class AluguelService {
 
         imovel1 = imovelRepository.getById(1);
 
-        Aluguel aluguel1 = new Aluguel("Eric p.a", "333-333-333-00", "Cartão de Crédito", imovel1);
+        Aluguel aluguel1 = new Aluguel("Eric p.a", "48805895865", "Cartão de Crédito", imovel1);
         aluguelRepository.saveAll(Arrays.asList(aluguel1));
     }
 }
