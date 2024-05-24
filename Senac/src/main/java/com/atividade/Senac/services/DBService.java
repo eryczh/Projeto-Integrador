@@ -55,4 +55,8 @@ public class DBService {
         }
         return null;
     }
+
+    public List<Aluguel> buscarPorCPF(String cpf) {
+        return aluguelRepository.findByCpf(cpf);
+    }
 }

@@ -29,6 +29,11 @@ public class AluguelResource {
         return alugueis;
     }
 
+    @GetMapping(value = "/cpf/{cpf}")
+    public List<Aluguel> buscarPorCpf(@PathVariable String cpf) {
+        return dbServiceAluguel.buscarPorCPF(cpf);
+    }
+
     @PostMapping
     public ResponseEntity<Aluguel> gravarAluguel(@RequestBody Aluguel aluguel) {
         aluguel = dbServiceAluguel.gravarAluguel(aluguel);

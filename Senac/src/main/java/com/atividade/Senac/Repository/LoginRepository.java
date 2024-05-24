@@ -23,4 +23,5 @@ public interface LoginRepository extends JpaRepository <Login, Integer>{
 
     @Query("SELECT login FROM Login login WHERE login.user = :user AND login.senha = :senha")
     Login findByUserAndSenha(@Param("user") String user, @Param("senha") String senha);
+    
 }

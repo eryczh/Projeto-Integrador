@@ -1,6 +1,9 @@
 package com.atividade.Senac.Entities;
 
 import java.io.Serializable;
+
+import com.atividade.Senac.services.CPFValidator;
+
 import jakarta.persistence.*;
 
  @Entity(name = "Alugueis")
@@ -57,6 +60,9 @@ public class Aluguel implements Serializable {
     }
 
     public void setCpf(String cpf) {
+        if(!CPFValidator.isValidCPF(cpf)) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
         this.cpf = cpf;
     }
 
@@ -69,6 +75,9 @@ public class Aluguel implements Serializable {
     }
 
     public Aluguel(String nomeCliente, String cpf, String formaDePagamento, Imovel imovel) {
+        if (!CPFValidator.isValidCPF(cpf)) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
         this.nomeCliente = nomeCliente;
         this.cpf = cpf;
         this.formaDePagamento = formaDePagamento;
