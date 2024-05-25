@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DBServiceI {
+public class DBServiceImovel {
 
     @Autowired
     private ImovelRepository imovelRepository;
@@ -89,6 +89,10 @@ public class DBServiceI {
 
     public List<Imovel> listarImoveisPorTipoECep(String tipo, String cep) {
         return imovelRepository.listarImoveisPorTipoECep(tipo, cep);
+    }
+
+    public List<Imovel> listaImoveisPorEndereco(String endereco, String numero) {
+        return imovelRepository.findByEnderecoAndNumero(endereco, numero);
     }
 
     public List<Imovel> listarImoveisAlugados() {

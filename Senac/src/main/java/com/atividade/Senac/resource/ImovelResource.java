@@ -1,7 +1,7 @@
 package com.atividade.Senac.resource;
 
 import com.atividade.Senac.Entities.Imovel;
-import com.atividade.Senac.services.DBServiceI;
+import com.atividade.Senac.services.DBServiceImovel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import java.util.List;
 public class ImovelResource {
 
     @Autowired
-    private DBServiceI dbServiceImovel;
+    private DBServiceImovel dbServiceImovel;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Imovel> findById(@PathVariable Integer id) {
@@ -79,6 +79,12 @@ public class ImovelResource {
     @GetMapping(value = "/tipo/{tipo}/cep/{cep}")
     public ResponseEntity<List<Imovel>> listarImoveisPorTipoECep(@PathVariable String tipo, @PathVariable String cep) {
         List<Imovel> imoveis = dbServiceImovel.listarImoveisPorTipoECep(tipo, cep);
+        return ResponseEntity.ok().body(imoveis);
+    }
+
+    @GetMapping(value = "/endereco/{endereco}/{numero}")
+    public ResponseEntity<List<Imovel>> listaImoveisPorEndereco(@PathVariable String endereco, @PathVariable String numero) {
+        List<Imovel> imoveis = dbServiceImovel.listaImoveisPorEndereco(endereco, numero);
         return ResponseEntity.ok().body(imoveis);
     }
 

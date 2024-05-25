@@ -1,7 +1,7 @@
 package com.atividade.Senac.resource;
 
 import com.atividade.Senac.Entities.Aluguel;
-import com.atividade.Senac.services.DBService;
+import com.atividade.Senac.services.DBServiceAluguel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 public class AluguelResource {
     
     @Autowired
-    private DBService dbServiceAluguel;
+    private DBServiceAluguel dbServiceAluguel;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Aluguel> findById(@PathVariable Integer id) {

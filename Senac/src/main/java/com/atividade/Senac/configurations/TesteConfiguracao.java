@@ -1,7 +1,6 @@
 package com.atividade.Senac.configurations;
 
 import com.atividade.Senac.services.AluguelService;
-import com.atividade.Senac.services.ImovelService;
 import com.atividade.Senac.services.LoginService;
 
 import jakarta.annotation.PostConstruct;
@@ -20,18 +19,12 @@ public class TesteConfiguracao {
     AluguelService myAluguelService;
     
     @Autowired
-    ImovelService myImovelService;
-
-    @Autowired
     LoginService loginService;
-
-
 
     @PostConstruct
     private boolean instanciar() throws ParseException {
        
         this.myAluguelService.instanciarDBAluguel();
-        this.myImovelService.instanciarDBImovel();
         this.loginService.instanciarDBLogin();
         return true;
     }

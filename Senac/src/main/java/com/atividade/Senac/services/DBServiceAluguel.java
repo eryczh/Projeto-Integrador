@@ -3,7 +3,6 @@ package com.atividade.Senac.services;
 import com.atividade.Senac.Entities.Aluguel;
 import com.atividade.Senac.Entities.Imovel;
 import com.atividade.Senac.Repository.AluguelRepository;
-import com.atividade.Senac.Repository.ImovelRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,13 +11,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DBService {
+public class DBServiceAluguel {
     
     @Autowired
     private AluguelRepository aluguelRepository;
 
     @Autowired
-    private DBServiceI imovelServiceI;
+    private DBServiceImovel imovelServiceI;
 
     public Aluguel findByIdAluguel (Integer id) {
         Optional<Aluguel> aluguel = aluguelRepository.findById(id);
